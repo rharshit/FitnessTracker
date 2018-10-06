@@ -6,7 +6,7 @@
 package fitness.tracker.pages;
 
 import fitness.tracker.pages.EditDetails;
-import fitness.tracker.pages.EditDetails;
+import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.EditDetails;
 import fitness.tracker.util.User;
 import fitness.tracker.util.Test;
@@ -23,9 +23,7 @@ public class EditDetails extends javax.swing.JFrame {
     static User user;
     public EditDetails(User user) {
         this.user=user;
-        initComponents();
-        lName.setText(user.name);
-        tfUsername.setText(user.uname);
+        Init();
     }
 
     /**
@@ -44,6 +42,10 @@ public class EditDetails extends javax.swing.JFrame {
         bEnter = new javax.swing.JButton();
         bTrack = new javax.swing.JButton();
         bEdit = new javax.swing.JButton();
+        lAge = new javax.swing.JLabel();
+        lUname = new javax.swing.JLabel();
+        lWeight = new javax.swing.JLabel();
+        lHeight = new javax.swing.JLabel();
         jpInfo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -65,7 +67,7 @@ public class EditDetails extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Hi");
 
-        lName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lName.setText("User");
 
         bLogout.setText("Logout");
@@ -96,6 +98,14 @@ public class EditDetails extends javax.swing.JFrame {
             }
         });
 
+        lAge.setText("Age:");
+
+        lUname.setText("Username:");
+
+        lWeight.setText("Weight:");
+
+        lHeight.setText("Height:");
+
         javax.swing.GroupLayout jpNavLayout = new javax.swing.GroupLayout(jpNav);
         jpNav.setLayout(jpNavLayout);
         jpNavLayout.setHorizontalGroup(
@@ -104,14 +114,18 @@ public class EditDetails extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bEnter, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(bTrack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpNavLayout.createSequentialGroup()
                         .addGroup(jpNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(lName))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(bEnter, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(bTrack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(bEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                            .addComponent(lName)
+                            .addComponent(lAge)
+                            .addComponent(lUname)
+                            .addComponent(lWeight)
+                            .addComponent(lHeight))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpNavLayout.setVerticalGroup(
@@ -121,7 +135,15 @@ public class EditDetails extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lUname)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lAge)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lWeight)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lHeight)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(bEdit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bTrack)
@@ -153,10 +175,10 @@ public class EditDetails extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,6 +241,11 @@ public class EditDetails extends javax.swing.JFrame {
         );
 
         bSave.setText("Save");
+        bSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpInfoLayout = new javax.swing.GroupLayout(jpInfo);
         jpInfo.setLayout(jpInfoLayout);
@@ -231,12 +258,12 @@ public class EditDetails extends javax.swing.JFrame {
                     .addGroup(jpInfoLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInfoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(bSave)
-                        .addGap(141, 141, 141)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jpInfoLayout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(bSave)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpInfoLayout.setVerticalGroup(
             jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,9 +274,9 @@ public class EditDetails extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(bSave)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -258,7 +285,7 @@ public class EditDetails extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpNav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -289,6 +316,7 @@ public class EditDetails extends javax.swing.JFrame {
     private void bLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLogoutActionPerformed
         // TODO add your handling code here:
         new Login().show();
+        dispose();
     }//GEN-LAST:event_bLogoutActionPerformed
 
     private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
@@ -300,6 +328,13 @@ public class EditDetails extends javax.swing.JFrame {
         new EditDetails(user).show();
         dispose();
     }//GEN-LAST:event_bTrackActionPerformed
+
+    private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
+        // TODO add your handling code here:
+        user.uname = tfUsername.getText();
+        new EditDetails(user).show();
+        dispose();
+    }//GEN-LAST:event_bSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,10 +394,24 @@ public class EditDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
+    private javax.swing.JLabel lAge;
+    private javax.swing.JLabel lHeight;
     private javax.swing.JLabel lName;
+    private javax.swing.JLabel lUname;
+    private javax.swing.JLabel lWeight;
     private javax.swing.JPasswordField tfCpass;
     private javax.swing.JPasswordField tfNpass;
     private javax.swing.JPasswordField tfOpass;
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void Init() {
+        initComponents();
+        lUname.setText("Username: "+user.uname);
+        lName.setText(user.name);
+        //lAge.setText();
+        lHeight.setText("Height: "+user.height);
+        lWeight.setText("Weight: "+user.weight);
+        tfUsername.setText(user.uname); //To change body of generated methods, choose Tools | Templates.
+    }
 }

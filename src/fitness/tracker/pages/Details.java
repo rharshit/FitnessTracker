@@ -224,7 +224,7 @@ public class Details extends javax.swing.JFrame {
 //        System.out.println(weight);
         user = new User(uname, name, email, dob, height, weight);
         user.printDetails();
-        new TrackData(user).show();
+        new EditDetails(user).show();
         dispose();
     }//GEN-LAST:event_bDoneActionPerformed
 

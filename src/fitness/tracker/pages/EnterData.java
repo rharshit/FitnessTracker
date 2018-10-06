@@ -7,7 +7,7 @@ package fitness.tracker.pages;
 
 import fitness.tracker.pages.EditDetails;
 import fitness.tracker.pages.EnterData;
-import fitness.tracker.pages.TrackData;
+import fitness.tracker.pages.EnterData;
 import fitness.tracker.util.User;
 import fitness.tracker.util.Test;
 
@@ -15,13 +15,13 @@ import fitness.tracker.util.Test;
  *
  * @author student
  */
-public class TrackData extends javax.swing.JFrame {
+public class EnterData extends javax.swing.JFrame {
 
     /**
      * Creates new form TrackData
      */
     static User user;
-    public TrackData(User user) {
+    public EnterData(User user) {
         this.user=user;
         Init();
     }
@@ -305,7 +305,7 @@ public class TrackData extends javax.swing.JFrame {
 
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
         // TODO add your handling code here:
-        new TrackData(user).show();
+        new EnterData(user).show();
         dispose();
     }//GEN-LAST:event_bEditActionPerformed
 
@@ -325,7 +325,7 @@ public class TrackData extends javax.swing.JFrame {
 
     private void bTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTrackActionPerformed
         // TODO add your handling code here:
-        new TrackData(user).show();
+        new EnterData(user).show();
         dispose();
     }//GEN-LAST:event_bTrackActionPerformed
 
@@ -352,14 +352,18 @@ public class TrackData extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrackData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnterData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrackData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnterData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrackData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnterData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrackData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EnterData.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -368,7 +372,7 @@ public class TrackData extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TrackData(user).setVisible(true);
+                new EnterData(user).setVisible(true);
             }
         });
     }
@@ -401,6 +405,7 @@ public class TrackData extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void Init() {
+        user.uname = tfUsername.getText();
         initComponents();
         lName.setText(user.name);
         lUname.setText("Username: "+user.uname);

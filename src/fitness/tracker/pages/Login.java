@@ -145,7 +145,7 @@ public class Login extends javax.swing.JFrame {
         psw = tfLoginPsw.getText();
         user = fetchUser(uname, psw);
         if(user != null){
-            new TrackData(user).show();
+            new EditDetails(user).show();
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Username password inavlid ");
@@ -207,7 +207,7 @@ public class Login extends javax.swing.JFrame {
     private User fetchUser(String uname, String psw) {
         System.out.println(psw);
         if(psw.equals("pass")){
-            User user = new User("uname", "Na Me", "e@mail.com", "01-01-01", "170", "69");
+            User user = new User(uname, "Na Me", "e@mail.com", "01-01-01", "170", "69");
             return user;
         }
         return null;
