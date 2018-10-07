@@ -10,6 +10,20 @@ import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.TrackData;
 import fitness.tracker.pages.Login;
 import fitness.tracker.util.User;
+import java.awt.Font;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javax.swing.GroupLayout.Group;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -21,11 +35,167 @@ public class TrackData extends javax.swing.JFrame {
      * Creates new form TrackData
      */
     static User user;
+
+    private static Scene createSceneCalCons() {
+        HBox root = new HBox();
+        Scene scene = new Scene(root, 500, 300);
+        
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Day");
+        
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Calories Consumed");
+        
+        LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
+        lineChart.setTitle("Consumed");
+        
+        XYChart.Series<String, Number> data = new XYChart.Series<>();
+        data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
+        data.getData().add(new XYChart.Data<String, Number>("Tue", 520));
+        data.getData().add(new XYChart.Data<String, Number>("Wed", 620));
+        data.getData().add(new XYChart.Data<String, Number>("Thu", 360));
+        data.getData().add(new XYChart.Data<String, Number>("Fri", 260));
+        data.getData().add(new XYChart.Data<String, Number>("Sat", 100));
+        data.getData().add(new XYChart.Data<String, Number>("Sun", 50));
+        
+        lineChart.getData().add(data);
+        root.getChildren().add(lineChart);
+        
+        return scene;
+    }
+    private static Scene createSceneCalBurnt() {
+        HBox root = new HBox();
+        Scene scene = new Scene(root, 500, 300);
+        
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Day");
+        
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Calories Burnt");
+        
+        LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
+        lineChart.setTitle("Burnt");
+        
+        XYChart.Series<String, Number> data = new XYChart.Series<>();
+        data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
+        data.getData().add(new XYChart.Data<String, Number>("Tue", 520));
+        data.getData().add(new XYChart.Data<String, Number>("Wed", 620));
+        data.getData().add(new XYChart.Data<String, Number>("Thu", 360));
+        data.getData().add(new XYChart.Data<String, Number>("Fri", 260));
+        data.getData().add(new XYChart.Data<String, Number>("Sat", 100));
+        data.getData().add(new XYChart.Data<String, Number>("Sun", 50));
+        
+        lineChart.getData().add(data);
+        root.getChildren().add(lineChart);
+        
+        return scene;
+    }
+    private static Scene createSceneCalBal() {
+        HBox root = new HBox();
+        Scene scene = new Scene(root, 500, 300);
+        
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Day");
+        
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Net Calories");
+        
+        LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
+        lineChart.setTitle("Net");
+        
+        XYChart.Series<String, Number> data = new XYChart.Series<>();
+        data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
+        data.getData().add(new XYChart.Data<String, Number>("Tue", 520));
+        data.getData().add(new XYChart.Data<String, Number>("Wed", 620));
+        data.getData().add(new XYChart.Data<String, Number>("Thu", 360));
+        data.getData().add(new XYChart.Data<String, Number>("Fri", 260));
+        data.getData().add(new XYChart.Data<String, Number>("Sat", 100));
+        data.getData().add(new XYChart.Data<String, Number>("Sun", 50));
+        
+        lineChart.getData().add(data);
+        root.getChildren().add(lineChart);
+        
+        return scene;
+    }
+    private static Scene createSceneWeight() {
+        HBox root = new HBox();
+        Scene scene = new Scene(root, 500, 300);
+        
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Day");
+        
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Weight");
+        
+        LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
+        lineChart.setTitle("Weight");
+        
+        XYChart.Series<String, Number> data = new XYChart.Series<>();
+        data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
+        data.getData().add(new XYChart.Data<String, Number>("Tue", 520));
+        data.getData().add(new XYChart.Data<String, Number>("Wed", 620));
+        data.getData().add(new XYChart.Data<String, Number>("Thu", 360));
+        data.getData().add(new XYChart.Data<String, Number>("Fri", 260));
+        data.getData().add(new XYChart.Data<String, Number>("Sat", 100));
+        data.getData().add(new XYChart.Data<String, Number>("Sun", 50));
+        
+        lineChart.getData().add(data);
+        root.getChildren().add(lineChart);
+        
+        return scene;
+    }
     public TrackData(User user) {
         this.user=user;
         Init();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                initAndShowGUI();
+            }
+        });
     }
 
+    JLabel lTest;
+    
+    private void initAndShowGUI() {
+        final JFXPanel fxPanel = new JFXPanel();
+        fxPanel.show();
+//        jpInfo.add(fxPanel);
+//        jpInfo.add(lTest);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                initFXCalCons(jPanel1);
+                initFXCalBurnt(jPanel3);
+                initFXCalBal(jPanel4);
+                initFXWeight(jPanel5);
+            }
+       });
+    }
+    
+    private static void initFXCalCons(JFXPanel fxPanel) {
+        // This method is invoked on the JavaFX thread
+        Scene scene = createSceneCalCons();
+        fxPanel.setScene(scene);
+    }
+    
+    private static void initFXCalBurnt(JFXPanel fxPanel) {
+        // This method is invoked on the JavaFX thread
+        Scene scene = createSceneCalBurnt();
+        fxPanel.setScene(scene);
+    }
+    
+    private static void initFXCalBal(JFXPanel fxPanel) {
+        // This method is invoked on the JavaFX thread
+        Scene scene = createSceneCalBal();
+        fxPanel.setScene(scene);
+    }
+    
+    private static void initFXWeight(JFXPanel fxPanel) {
+        // This method is invoked on the JavaFX thread
+        Scene scene = createSceneWeight();
+        fxPanel.setScene(scene);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +217,10 @@ public class TrackData extends javax.swing.JFrame {
         lWeight = new javax.swing.JLabel();
         lHeight = new javax.swing.JLabel();
         jpInfo = new javax.swing.JPanel();
+        jPanel1 = new JFXPanel();
+        jPanel3 = new JFXPanel();
+        jPanel4 = new JFXPanel();
+        jPanel5 = new JFXPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,15 +318,77 @@ public class TrackData extends javax.swing.JFrame {
 
         jpInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 241, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 242, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 169, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jpInfoLayout = new javax.swing.GroupLayout(jpInfo);
         jpInfo.setLayout(jpInfoLayout);
         jpInfoLayout.setHorizontalGroup(
             jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
+            .addGroup(jpInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jpInfoLayout.setVerticalGroup(
             jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGroup(jpInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,7 +440,7 @@ public class TrackData extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http:    //download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -241,6 +477,11 @@ public class TrackData extends javax.swing.JFrame {
     private javax.swing.JButton bLogout;
     private javax.swing.JButton bTrack;
     private javax.swing.JLabel jLabel1;
+    private JFXPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private JFXPanel jPanel3;
+    private JFXPanel jPanel4;
+    private JFXPanel jPanel5;
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
     private javax.swing.JLabel lAge;
