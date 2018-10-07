@@ -8,8 +8,8 @@ package fitness.tracker.pages;
 import fitness.tracker.pages.EditDetails;
 import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.EditDetails;
+import fitness.tracker.pages.Login;
 import fitness.tracker.util.User;
-import fitness.tracker.util.Test;
 
 /**
  *
@@ -299,7 +299,7 @@ public class EditDetails extends javax.swing.JFrame {
 
     private void bEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEnterActionPerformed
         // TODO add your handling code here:
-        new EditDetails(user).show();
+        new EnterData(user).show();
         dispose();
     }//GEN-LAST:event_bEnterActionPerformed
 
@@ -325,7 +325,7 @@ public class EditDetails extends javax.swing.JFrame {
 
     private void bTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTrackActionPerformed
         // TODO add your handling code here:
-        new EditDetails(user).show();
+        new TrackData(user).show();
         dispose();
     }//GEN-LAST:event_bTrackActionPerformed
 

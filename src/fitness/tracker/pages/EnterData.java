@@ -7,9 +7,9 @@ package fitness.tracker.pages;
 
 import fitness.tracker.pages.EditDetails;
 import fitness.tracker.pages.EnterData;
-import fitness.tracker.pages.EnterData;
+import fitness.tracker.pages.TrackData;
+import fitness.tracker.pages.Login;
 import fitness.tracker.util.User;
-import fitness.tracker.util.Test;
 
 /**
  *
@@ -299,13 +299,13 @@ public class EnterData extends javax.swing.JFrame {
 
     private void bEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEnterActionPerformed
         // TODO add your handling code here:
-        new EditDetails(user).show();
+        new EnterData(user).show();
         dispose();
     }//GEN-LAST:event_bEnterActionPerformed
 
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
         // TODO add your handling code here:
-        new EnterData(user).show();
+        new EditDetails(user).show();
         dispose();
     }//GEN-LAST:event_bEditActionPerformed
 
@@ -325,7 +325,7 @@ public class EnterData extends javax.swing.JFrame {
 
     private void bTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTrackActionPerformed
         // TODO add your handling code here:
-        new EnterData(user).show();
+        new TrackData(user).show();
         dispose();
     }//GEN-LAST:event_bTrackActionPerformed
 
@@ -405,7 +405,6 @@ public class EnterData extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void Init() {
-        user.uname = tfUsername.getText();
         initComponents();
         lName.setText(user.name);
         lUname.setText("Username: "+user.uname);

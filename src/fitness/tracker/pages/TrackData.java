@@ -8,8 +8,8 @@ package fitness.tracker.pages;
 import fitness.tracker.pages.EditDetails;
 import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.TrackData;
+import fitness.tracker.pages.Login;
 import fitness.tracker.util.User;
-import fitness.tracker.util.Test;
 
 /**
  *
@@ -47,18 +47,6 @@ public class TrackData extends javax.swing.JFrame {
         lWeight = new javax.swing.JLabel();
         lHeight = new javax.swing.JLabel();
         jpInfo = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        tfUsername = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        tfOpass = new javax.swing.JPasswordField();
-        tfNpass = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
-        tfCpass = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
-        bSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,127 +144,15 @@ public class TrackData extends javax.swing.JFrame {
 
         jpInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Edit Profile");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(200, 200, 200)));
-
-        jLabel3.setText("Username:");
-
-        tfUsername.setText("user1");
-        tfUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUsernameActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(200, 200, 200)));
-
-        jLabel5.setText("Old Password:");
-
-        jLabel6.setText("New Password:");
-
-        tfCpass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCpassActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Confirm Password:");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfOpass)
-                    .addComponent(tfCpass)
-                    .addComponent(tfNpass))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tfOpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(tfNpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(tfCpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        bSave.setText("Save");
-        bSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSaveActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jpInfoLayout = new javax.swing.GroupLayout(jpInfo);
         jpInfo.setLayout(jpInfoLayout);
         jpInfoLayout.setHorizontalGroup(
             jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpInfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpInfoLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jpInfoLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(bSave)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 513, Short.MAX_VALUE)
         );
         jpInfoLayout.setVerticalGroup(
             jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpInfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bSave)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 368, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -299,19 +175,15 @@ public class TrackData extends javax.swing.JFrame {
 
     private void bEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEnterActionPerformed
         // TODO add your handling code here:
-        new EditDetails(user).show();
+        new EnterData(user).show();
         dispose();
     }//GEN-LAST:event_bEnterActionPerformed
 
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
         // TODO add your handling code here:
-        new TrackData(user).show();
+        new EditDetails(user).show();
         dispose();
     }//GEN-LAST:event_bEditActionPerformed
-
-    private void tfCpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCpassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCpassActionPerformed
 
     private void bLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLogoutActionPerformed
         // TODO add your handling code here:
@@ -319,21 +191,11 @@ public class TrackData extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_bLogoutActionPerformed
 
-    private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUsernameActionPerformed
-
     private void bTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTrackActionPerformed
         // TODO add your handling code here:
         new TrackData(user).show();
         dispose();
     }//GEN-LAST:event_bTrackActionPerformed
-
-    private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
-        // TODO add your handling code here:
-        user.uname = tfUsername.getText();
-        Init();
-    }//GEN-LAST:event_bSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,16 +239,8 @@ public class TrackData extends javax.swing.JFrame {
     private javax.swing.JButton bEdit;
     private javax.swing.JButton bEnter;
     private javax.swing.JButton bLogout;
-    private javax.swing.JButton bSave;
     private javax.swing.JButton bTrack;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
     private javax.swing.JLabel lAge;
@@ -394,10 +248,6 @@ public class TrackData extends javax.swing.JFrame {
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lUname;
     private javax.swing.JLabel lWeight;
-    private javax.swing.JPasswordField tfCpass;
-    private javax.swing.JPasswordField tfNpass;
-    private javax.swing.JPasswordField tfOpass;
-    private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 
     private void Init() {
@@ -407,6 +257,5 @@ public class TrackData extends javax.swing.JFrame {
         //lAge.setText();
         lHeight.setText("Height: "+user.height);
         lWeight.setText("Weight: "+user.weight);
-        tfUsername.setText(user.uname); //To change body of generated methods, choose Tools | Templates.
     }
 }
