@@ -158,10 +158,7 @@ public class TrackData extends javax.swing.JFrame {
     JLabel lTest;
     
     private void initAndShowGUI() {
-        final JFXPanel fxPanel = new JFXPanel();
-        fxPanel.show();
-//        jpInfo.add(fxPanel);
-//        jpInfo.add(lTest);
+        Platform.setImplicitExit(false);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
