@@ -6,8 +6,14 @@
 package fitness.tracker;
 
 import fitness.tracker.pages.Login;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -20,6 +26,23 @@ public class Landing {
     /**
      * @param args the command line arguments
      */
+    
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "123qwe";
+    private static final String CONN_STRING = "jdbc:mysql://localhost:3306/test";
+    
+    public static Connection con = null;
+    
+    static void connectDB(){
+        con = null;
+        try{
+            con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
+            System.out.println("Connected to "+CONN_STRING+" @ "+USERNAME);
+        }catch(SQLException e){
+            System.err.println(e);
+        }
+    }
+    
     public static void main(String[] args) {
         try {
             // TODO code application logic here
@@ -33,6 +56,8 @@ public class Landing {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Landing.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        connectDB();
         new Login().show();
     }
 }

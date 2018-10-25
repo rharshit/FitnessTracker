@@ -138,11 +138,7 @@ public class demo extends javax.swing.JFrame {
         String db = dob.getText();
         String ps = password.getText();
         pass(usen,na,ei,db,ps);
-        
-        
-        
-        
-        
+      
     }//GEN-LAST:event_signupActionPerformed
 
     /**
@@ -156,8 +152,6 @@ public class demo extends javax.swing.JFrame {
     public void pass(String u,String n, String ei,String d,String p)
     {
         Connection con = null;
-
-        
         try{
             con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
             System.out.println("Connected");
@@ -174,10 +168,7 @@ public class demo extends javax.swing.JFrame {
                 int num = rs.getInt("num");
                 String str = rs.getString("str");
                 JOptionPane.showMessageDialog(null, Integer.toString(num)+"\n"+str);
-        // print the results
-        
-        }
-                    
+            }     
         }catch(SQLException e){
             System.err.println(e);
         }
