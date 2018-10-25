@@ -408,9 +408,9 @@ public class EditDetails extends javax.swing.JFrame {
 
     private void Init() {
         initComponents();
-        double bmi;
-        bmi = Double.parseDouble(user.weight)*10000/(Math.pow(Double.parseDouble(user.height), 2));
-        lBmi.setText("BMI: "+Double.toString(bmi));
+        float bmi;
+        bmi = (float) (Double.parseDouble(user.weight)*10000/(Math.pow(Double.parseDouble(user.height), 2)));   
+        lBmi.setText("BMI: "+String.format("%.1f", bmi));
         lUname.setText("Username: "+user.uname);
         lName.setText(user.name);
         lHeight.setText("Height: "+user.height);

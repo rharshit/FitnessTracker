@@ -219,6 +219,18 @@ public class Details extends javax.swing.JFrame {
         dob = cbYear.getSelectedItem().toString()+"-"+cbMonth.getSelectedItem().toString()+"-"+cbDate.getSelectedItem().toString();
         height = tfHeight.getText();
         weight = tfWeight.getText();
+        try{
+            Double.parseDouble(height);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Height must be a numerical");
+            return;
+        }
+        try{
+            Double.parseDouble(weight);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Weight must be a numerical");
+            return;
+        }
 //        System.out.println(name);
 //        System.out.println(email);
 //        System.out.println(dob);
