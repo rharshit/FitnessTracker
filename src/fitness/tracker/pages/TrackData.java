@@ -6,7 +6,9 @@
 package fitness.tracker.pages;
 
 import fitness.tracker.pages.EditDetails;
+import static fitness.tracker.pages.EditDetails.user;
 import fitness.tracker.pages.EnterData;
+import static fitness.tracker.pages.EnterData.user;
 import fitness.tracker.pages.TrackData;
 import fitness.tracker.pages.Login;
 import fitness.tracker.util.User;
@@ -209,7 +211,7 @@ public class TrackData extends javax.swing.JFrame {
         bEnter = new javax.swing.JButton();
         bTrack = new javax.swing.JButton();
         bEdit = new javax.swing.JButton();
-        lAge = new javax.swing.JLabel();
+        lBmi = new javax.swing.JLabel();
         lUname = new javax.swing.JLabel();
         lWeight = new javax.swing.JLabel();
         lHeight = new javax.swing.JLabel();
@@ -253,7 +255,7 @@ public class TrackData extends javax.swing.JFrame {
             }
         });
 
-        lAge.setText("Age:");
+        lBmi.setText("BMI:");
 
         lUname.setText("Username:");
 
@@ -276,7 +278,7 @@ public class TrackData extends javax.swing.JFrame {
                         .addGroup(jpNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(lName)
-                            .addComponent(lAge)
+                            .addComponent(lBmi)
                             .addComponent(lUname)
                             .addComponent(lWeight)
                             .addComponent(lHeight))
@@ -293,7 +295,7 @@ public class TrackData extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lUname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lAge)
+                .addComponent(lBmi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lWeight)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -413,7 +415,7 @@ public class TrackData extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
-    private javax.swing.JLabel lAge;
+    private javax.swing.JLabel lBmi;
     private javax.swing.JLabel lHeight;
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lUname;
@@ -430,9 +432,11 @@ public class TrackData extends javax.swing.JFrame {
     private void Init() {
         initComponents();
         initCustomComponents();
+        double bmi;
+        bmi = Double.parseDouble(user.weight)*10000/(Math.pow(Double.parseDouble(user.height), 2));
+        lBmi.setText("BMI: "+Double.toString(bmi));
         lName.setText(user.name);
         lUname.setText("Username: "+user.uname);
-        //lAge.setText();
         lHeight.setText("Height: "+user.height);
         lWeight.setText("Weight: "+user.weight);
     }

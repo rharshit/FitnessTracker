@@ -6,6 +6,7 @@
 package fitness.tracker.pages;
 
 import fitness.tracker.pages.EditDetails;
+import static fitness.tracker.pages.EditDetails.user;
 import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.TrackData;
 import fitness.tracker.pages.Login;
@@ -42,7 +43,7 @@ public class EnterData extends javax.swing.JFrame {
         bEnter = new javax.swing.JButton();
         bTrack = new javax.swing.JButton();
         bEdit = new javax.swing.JButton();
-        lAge = new javax.swing.JLabel();
+        lBmi = new javax.swing.JLabel();
         lUname = new javax.swing.JLabel();
         lWeight = new javax.swing.JLabel();
         lHeight = new javax.swing.JLabel();
@@ -107,7 +108,7 @@ public class EnterData extends javax.swing.JFrame {
             }
         });
 
-        lAge.setText("Age:");
+        lBmi.setText("BMI:");
 
         lUname.setText("Username:");
 
@@ -130,7 +131,7 @@ public class EnterData extends javax.swing.JFrame {
                         .addGroup(jpNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(lName)
-                            .addComponent(lAge)
+                            .addComponent(lBmi)
                             .addComponent(lUname)
                             .addComponent(lWeight)
                             .addComponent(lHeight))
@@ -147,7 +148,7 @@ public class EnterData extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lUname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lAge)
+                .addComponent(lBmi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lWeight)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -507,9 +508,7 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JButton bEnter;
     private javax.swing.JButton bLogout;
     private javax.swing.JButton bTrack;
-    private javax.swing.JButton bUpdateActivity1;
     private javax.swing.JComboBox<String> cbActivityList;
-    private javax.swing.JComboBox<String> cbActivityList1;
     private javax.swing.JComboBox<String> cbFoodItems;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -519,22 +518,18 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
-    private javax.swing.JLabel lAge;
+    private javax.swing.JLabel lBmi;
     private javax.swing.JLabel lHeight;
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lUname;
     private javax.swing.JLabel lWeight;
     private javax.swing.JTextField tfActivityAmt;
-    private javax.swing.JTextField tfActivityAmt1;
     private javax.swing.JTextField tfFoodQty;
     private javax.swing.JTextField tfSteps;
     private javax.swing.JTextField tfSteps1;
@@ -542,9 +537,11 @@ public class EnterData extends javax.swing.JFrame {
 
     private void Init() {
         initComponents();
+        double bmi;
+        bmi = Double.parseDouble(user.weight)*10000/(Math.pow(Double.parseDouble(user.height), 2));
+        lBmi.setText("BMI: "+Double.toString(bmi));
         lName.setText(user.name);
         lUname.setText("Username: "+user.uname);
-        //lAge.setText();
         lHeight.setText("Height: "+user.height);
         lWeight.setText("Weight: "+user.weight);
     }

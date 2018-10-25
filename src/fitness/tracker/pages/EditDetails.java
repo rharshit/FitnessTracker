@@ -8,6 +8,7 @@ package fitness.tracker.pages;
 import fitness.tracker.pages.EditDetails;
 import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.EditDetails;
+import static fitness.tracker.pages.EnterData.user;
 import fitness.tracker.pages.Login;
 import fitness.tracker.util.User;
 
@@ -42,7 +43,7 @@ public class EditDetails extends javax.swing.JFrame {
         bEnter = new javax.swing.JButton();
         bTrack = new javax.swing.JButton();
         bEdit = new javax.swing.JButton();
-        lAge = new javax.swing.JLabel();
+        lBmi = new javax.swing.JLabel();
         lUname = new javax.swing.JLabel();
         lWeight = new javax.swing.JLabel();
         lHeight = new javax.swing.JLabel();
@@ -98,7 +99,7 @@ public class EditDetails extends javax.swing.JFrame {
             }
         });
 
-        lAge.setText("Age:");
+        lBmi.setText("BMI:");
 
         lUname.setText("Username:");
 
@@ -121,7 +122,7 @@ public class EditDetails extends javax.swing.JFrame {
                         .addGroup(jpNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(lName)
-                            .addComponent(lAge)
+                            .addComponent(lBmi)
                             .addComponent(lUname)
                             .addComponent(lWeight)
                             .addComponent(lHeight))
@@ -138,7 +139,7 @@ public class EditDetails extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lUname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lAge)
+                .addComponent(lBmi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lWeight)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -394,7 +395,7 @@ public class EditDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
-    private javax.swing.JLabel lAge;
+    private javax.swing.JLabel lBmi;
     private javax.swing.JLabel lHeight;
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lUname;
@@ -407,9 +408,11 @@ public class EditDetails extends javax.swing.JFrame {
 
     private void Init() {
         initComponents();
+        double bmi;
+        bmi = Double.parseDouble(user.weight)*10000/(Math.pow(Double.parseDouble(user.height), 2));
+        lBmi.setText("BMI: "+Double.toString(bmi));
         lUname.setText("Username: "+user.uname);
         lName.setText(user.name);
-        //lAge.setText();
         lHeight.setText("Height: "+user.height);
         lWeight.setText("Weight: "+user.weight);
         tfUsername.setText(user.uname); //To change body of generated methods, choose Tools | Templates.
