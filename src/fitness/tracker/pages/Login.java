@@ -143,7 +143,7 @@ public class Login extends javax.swing.JFrame {
         String uname, psw;
         uname = tfLoginUname.getText();
         psw = tfLoginPsw.getText();
-        user = fetchUser(uname, psw);
+        user = User.fetchUser(uname, psw);
         if(user != null){
             new EditDetails(user).show();
             dispose();

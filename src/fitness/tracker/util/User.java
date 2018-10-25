@@ -7,6 +7,7 @@ package fitness.tracker.util;
 
 import fitness.tracker.util.Connect;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.sql.Statement;
@@ -54,5 +55,33 @@ public class User {
             return null;
         }
         return new User(uname, psw, name, email, dob, height, weight);
+    }
+    public static User fetchUser(String uname, String psw){
+        String name=null, email=null, dob=null, height=null, weight=null;
+        int r=0;
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "SELECT * FROM user where user.username='"+uname+"' and user.password='"+psw+"'";
+            System.out.println("Query: "+query);
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                name = rs.getString("name");
+                email = rs.getString("email");
+                dob = rs.getString("dob");
+                height = Integer.toString(rs.getInt("height"));
+                weight = Integer.toString(rs.getInt("weight"));
+                r++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        if(r==1){
+            return new User(uname, psw, name, email, dob, height, weight);
+        } else {
+            System.out.println("User: Number of rows selected "+r);
+            return null;
+        }
     }
 }
