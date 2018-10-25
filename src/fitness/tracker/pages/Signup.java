@@ -6,6 +6,7 @@
 package fitness.tracker.pages;
 
 import fitness.tracker.pages.Details;
+import javax.swing.JOptionPane;
 /**
  *
  * @author student
@@ -130,8 +131,12 @@ public class Signup extends javax.swing.JFrame {
 
     private void bSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSignupActionPerformed
         // TODO add your handling code here:
-        new Details(tfSignupUname.getText()).show();
-        dispose();
+        if(tfSignupPsw.getText().equals(tfSignupPsw2.getText())){
+            new Details(tfSignupUname.getText(), tfSignupPsw.getText()).show();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "The passwords entered do not match");
+        }
     }//GEN-LAST:event_bSignupActionPerformed
 
     private void tfSignupPsw2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSignupPsw2ActionPerformed

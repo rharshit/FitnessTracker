@@ -6,6 +6,7 @@
 package fitness.tracker.pages;
 
 import fitness.tracker.util.User;
+import javax.swing.JOptionPane;
 /**
  *
  * @author student
@@ -15,11 +16,12 @@ public class Details extends javax.swing.JFrame {
     /**
      * Creates new form details
      */
-    static String uname, name, email, dob, height, weight;
+    static String uname, psw, name, email, dob, height, weight;
     User user;
     
-    public Details(String uname) {
+    public Details(String uname, String psw) {
         this.uname = uname;
+        this.psw = psw;
         initComponents();
         lHi.setText("Hi "+uname+"!");
     }
@@ -103,7 +105,7 @@ public class Details extends javax.swing.JFrame {
 
         jLabel7.setText("Month:");
 
-        cbMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        cbMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
         jLabel8.setText("Year:");
 
@@ -214,7 +216,7 @@ public class Details extends javax.swing.JFrame {
         // TODO add your handling code here:
         name = tfSignupName.getText();
         email = tfEmail.getText();
-        dob = cbDate.getSelectedItem().toString()+"-"+cbMonth.getSelectedItem().toString()+"-"+cbYear.getSelectedItem().toString();
+        dob = cbYear.getSelectedItem().toString()+"-"+cbMonth.getSelectedItem().toString()+"-"+cbDate.getSelectedItem().toString();
         height = tfHeight.getText();
         weight = tfWeight.getText();
 //        System.out.println(name);
@@ -222,10 +224,15 @@ public class Details extends javax.swing.JFrame {
 //        System.out.println(dob);
 //        System.out.println(height);
 //        System.out.println(weight);
-        user = new User(uname, name, email, dob, height, weight);
-        user.printDetails();
-        new EditDetails(user).show();
-        dispose();
+        user = User.insertUser(uname, psw, name, email, dob, height, weight);
+        if(user != null){
+            user.printDetails();
+            new EditDetails(user).show();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Error creating new user");
+        }
+        
     }//GEN-LAST:event_bDoneActionPerformed
 
     /**
@@ -259,7 +266,7 @@ public class Details extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Details(uname).setVisible(true);
+                new Details(uname, psw).setVisible(true);
             }
         });
     }
