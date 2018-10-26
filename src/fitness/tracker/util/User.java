@@ -43,6 +43,7 @@ public class User {
     
     static public User insertUser(String uname, String psw, String name, String email, String dob, String height, String weight){
         //INSERT INTO `fitness`.`user` (`username`, `password`, `name`, `email`, `dob`, `height`, `weight`) VALUES ('test2', 'test1234', 'Test2 User', 'test2@user.com', '1990-04-13', '172', '69');
+        User user = new User(uname, psw, name, email, dob, height, weight);
         try {
             Connection con = Connect.connectDB();
             Statement stmt = (Statement) con.createStatement();
@@ -51,11 +52,13 @@ public class User {
                     +"', '"+height+"', '"+weight+"')";
             System.out.println(insert);
             stmt.execute(insert);
+            updateHeight(user, height);
+            updateWeight(user, weight);
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        return new User(uname, psw, name, email, dob, height, weight);
+        return user;
     }
     
     public static User fetchUser(String uname, String psw){
