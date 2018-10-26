@@ -13,6 +13,11 @@ import fitness.tracker.pages.Login;
 import fitness.tracker.util.Exercise;
 import fitness.tracker.util.Food;
 import fitness.tracker.util.User;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -27,6 +32,7 @@ public class EnterData extends javax.swing.JFrame {
     public EnterData(User user) {
         this.user=user;
         Init();
+        addActionListeners();
     }
 
     /**
@@ -70,9 +76,13 @@ public class EnterData extends javax.swing.JFrame {
         bAddSteps = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        tfSteps1 = new javax.swing.JTextField();
-        bAddSteps1 = new javax.swing.JButton();
+        tfHeight = new javax.swing.JTextField();
+        bUpdHeight = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        tfWeight = new javax.swing.JTextField();
+        bUpdWeight = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -312,6 +322,11 @@ public class EnterData extends javax.swing.JFrame {
         });
 
         bAddSteps.setText("Add");
+        bAddSteps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddStepsActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Steps");
 
@@ -320,16 +335,13 @@ public class EnterData extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(tfSteps, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addComponent(tfSteps, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddSteps))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel10)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,32 +355,34 @@ public class EnterData extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Weight"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Height"));
 
-        tfSteps1.addActionListener(new java.awt.event.ActionListener() {
+        tfHeight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSteps1ActionPerformed(evt);
+                tfHeightActionPerformed(evt);
             }
         });
 
-        bAddSteps1.setText("Update");
+        bUpdHeight.setText("Update");
+        bUpdHeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUpdHeightActionPerformed(evt);
+            }
+        });
 
-        jLabel11.setText("Weight (Kg)");
+        jLabel11.setText("Height (cm)");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(tfSteps1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(bAddSteps1))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel11)
+                    .addComponent(tfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bUpdHeight)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -378,8 +392,50 @@ public class EnterData extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfSteps1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bAddSteps1))
+                    .addComponent(tfHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bUpdHeight))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Weight"));
+
+        tfWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfWeightActionPerformed(evt);
+            }
+        });
+
+        bUpdWeight.setText("Update");
+        bUpdWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUpdWeightActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Weight (Kg)");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(tfWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bUpdWeight)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bUpdWeight))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -392,13 +448,13 @@ public class EnterData extends javax.swing.JFrame {
                 .addGroup(jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpInfoLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
                     .addGroup(jpInfoLayout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jpInfoLayout.setVerticalGroup(
@@ -413,7 +469,8 @@ public class EnterData extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jpInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -483,9 +540,9 @@ public class EnterData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfStepsActionPerformed
 
-    private void tfSteps1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSteps1ActionPerformed
+    private void tfHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHeightActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfSteps1ActionPerformed
+    }//GEN-LAST:event_tfHeightActionPerformed
 
     private void bAddFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddFoodActionPerformed
         // TODO add your handling code here:
@@ -494,6 +551,22 @@ public class EnterData extends javax.swing.JFrame {
     private void bAddActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActivityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bAddActivityActionPerformed
+
+    private void bAddStepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddStepsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bAddStepsActionPerformed
+
+    private void tfWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfWeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfWeightActionPerformed
+
+    private void bUpdHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpdHeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bUpdHeightActionPerformed
+
+    private void bUpdWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpdWeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bUpdWeightActionPerformed
 
     /**
      * @param args the command line arguments
@@ -541,16 +614,18 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JButton bAddActivity;
     private javax.swing.JButton bAddFood;
     private javax.swing.JButton bAddSteps;
-    private javax.swing.JButton bAddSteps1;
     private javax.swing.JButton bEdit;
     private javax.swing.JButton bEnter;
     private javax.swing.JButton bLogout;
     private javax.swing.JButton bTrack;
+    private javax.swing.JButton bUpdHeight;
+    private javax.swing.JButton bUpdWeight;
     private javax.swing.JComboBox<String> cbExerciseItems;
     private javax.swing.JComboBox<String> cbFoodItems;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -560,6 +635,7 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
     private javax.swing.JLabel lBmi;
@@ -571,8 +647,9 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JLabel lWeight;
     private javax.swing.JTextField tfActivityAmt;
     private javax.swing.JTextField tfFoodQty;
+    private javax.swing.JTextField tfHeight;
     private javax.swing.JTextField tfSteps;
-    private javax.swing.JTextField tfSteps1;
+    private javax.swing.JTextField tfWeight;
     // End of variables declaration//GEN-END:variables
 
     private void Init() {
@@ -584,5 +661,43 @@ public class EnterData extends javax.swing.JFrame {
         lUname.setText("Username: "+user.uname);
         lHeight.setText("Height: "+user.height);
         lWeight.setText("Weight: "+user.weight);
+    }
+
+    private void addActionListeners() {
+        addListener(tfFoodQty);
+        addListener(tfActivityAmt);
+        addListener(tfSteps);
+        addListener(tfHeight);
+        addListener(tfWeight);
+    }
+    
+    private boolean checkInt(JTextField tf) {
+        tf.setForeground(Color.BLACK);
+        try{
+            Float.parseFloat(tf.getText());
+        } catch (Exception e){
+            tf.setForeground(Color.RED);
+            return false;
+        }
+        return true;
+    }
+
+    private void addListener(JTextField tf) {
+        tf.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                checkInt(tf);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                checkInt(tf);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                checkInt(tf);
+            }
+        });
     }
 }
