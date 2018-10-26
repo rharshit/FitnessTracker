@@ -56,6 +56,7 @@ public class User {
         }
         return new User(uname, psw, name, email, dob, height, weight);
     }
+    
     public static User fetchUser(String uname, String psw){
         String name=null, email=null, dob=null, height=null, weight=null;
         int r=0;
@@ -83,5 +84,48 @@ public class User {
             System.out.println("User: Number of rows selected "+r);
             return null;
         }
+    }
+    
+    public static boolean checkOldPassword(String uname, String new_psw){
+        String psw;
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "SELECT * FROM password where password.username='"+uname+"'";
+            System.out.println("Query: "+query);
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                psw = rs.getString("password");
+                System.out.println(psw+" "+new_psw);
+                if(new_psw.equals(psw)){
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public static User updatePassword(User user, String new_psw) {
+        //INSERT INTO `fitness`.`password` (`username`, `password`) VALUES ('user123', 'psw123');
+        //UPDATE `fitness`.`user` SET `password` = '123' WHERE (`username` = 'rharshit');
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String insert = "INSERT INTO `fitness`.`password` (`username`, `password`) VALUES ('"+user.uname+"', '"+user.psw+"');";
+            System.out.println(insert);
+            stmt.execute(insert);
+            Statement stmte = (Statement) con.createStatement();
+            String update = "UPDATE `fitness`.`user` SET `password` = '"+new_psw+"' WHERE (`username` = '"+user.uname+"');";
+            System.out.println(update);
+            stmte.execute(update);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        user.psw = new_psw;
+        return user;
     }
 }

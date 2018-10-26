@@ -11,6 +11,7 @@ import fitness.tracker.pages.EditDetails;
 import static fitness.tracker.pages.EnterData.user;
 import fitness.tracker.pages.Login;
 import fitness.tracker.util.User;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -160,7 +161,7 @@ public class EditDetails extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Edit Profile");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Change Username"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Username"));
 
         jLabel3.setText("Username:");
 
@@ -176,9 +177,9 @@ public class EditDetails extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -332,9 +333,29 @@ public class EditDetails extends javax.swing.JFrame {
 
     private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
         // TODO add your handling code here:
-        user.uname = tfUsername.getText();
-        new EditDetails(user).show();
-        dispose();
+        if(tfNpass.getText().equals(tfCpass.getText())){
+            if(tfOpass.getText().equals(user.psw)){
+                if(tfNpass.getText().equals(user.psw)){
+                    JOptionPane.showMessageDialog(null, "New password cannot be same as current password");
+                } else {
+                    if(User.checkOldPassword(user.uname, tfNpass.getText())){
+                        user = User.updatePassword(user, tfNpass.getText());
+                        if(user!=null){
+                            new EditDetails(user).show();
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "An error occured");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "New password cannot be same as one of the old passwords");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect current password");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "The passwords entered do not match");
+        }
     }//GEN-LAST:event_bSaveActionPerformed
 
     /**
@@ -415,6 +436,8 @@ public class EditDetails extends javax.swing.JFrame {
         lName.setText(user.name);
         lHeight.setText("Height: "+user.height);
         lWeight.setText("Weight: "+user.weight);
-        tfUsername.setText(user.uname); //To change body of generated methods, choose Tools | Templates.
+        jLabel3.setText(user.uname);
+        tfUsername.show(false); // hide TextFeild to change username
+        //To change body of generated methods, choose Tools | Templates.
     }
 }
