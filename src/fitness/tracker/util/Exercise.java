@@ -11,26 +11,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author rhars
  */
-public class Food {
-    
-    public static String getUnit(String f_name){
+public class Exercise {
+    public static String getUnit(String e_name){
         //SELECT * FROM fitness.food WHERE food.f_name='Almonds';
         String rtn = "";
-        String f_cal = "", f_unit = "";
+        String e_cal = "", e_unit = "";
                 try {
             Connection con = Connect.connectDB();
             Statement stmt = (Statement) con.createStatement();
-            String query = "SELECT * FROM fitness.food WHERE food.f_name='"+f_name+"'";
+            String query = "SELECT * FROM fitness.exercise WHERE exercise.e_name='"+e_name+"'";
             System.out.println("Query: "+query);
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){
-                f_cal = rs.getString("f_calories");
-                f_unit = rs.getString("f_unit");
-                rtn+=f_cal+" Cal/"+f_unit;
+                e_cal = rs.getString("e_calories");
+                e_unit = rs.getString("e_unit");
+                rtn+=e_cal+" Cal/"+e_unit;
             }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);

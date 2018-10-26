@@ -10,6 +10,7 @@ import static fitness.tracker.pages.EditDetails.user;
 import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.TrackData;
 import fitness.tracker.pages.Login;
+import fitness.tracker.util.Exercise;
 import fitness.tracker.util.Food;
 import fitness.tracker.util.User;
 
@@ -58,11 +59,12 @@ public class EnterData extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         lFUnit = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        cbActivityList = new javax.swing.JComboBox<>();
+        cbExerciseItems = new javax.swing.JComboBox<>();
         tfActivityAmt = new javax.swing.JTextField();
         bAddActivity = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        lEUnit = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         tfSteps = new javax.swing.JTextField();
         bAddSteps = new javax.swing.JButton();
@@ -187,6 +189,11 @@ public class EnterData extends javax.swing.JFrame {
         });
 
         bAddFood.setText("Add");
+        bAddFood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddFoodActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Food Item");
 
@@ -232,10 +239,10 @@ public class EnterData extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Activity Performed"));
 
-        cbActivityList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plank", "Push-ups", "Pull-ups" }));
-        cbActivityList.addActionListener(new java.awt.event.ActionListener() {
+        cbExerciseItems.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Basketball", "Bicycling", "Calistheics", "Circuit Training", "Cricket", "Dancing", "Football", "Golf", "Jogging", "Martial Arts", "Pull Ups", "Pushups", "Rock Climbing", "Rowing", "Running", "Sit Ups", "Stretching", "Swimmig", "Tennis", "Volleyball", "Walking", "Weight Lifting(general)", "Weight Lifting(vigorous)", "Yoga" }));
+        cbExerciseItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbActivityListActionPerformed(evt);
+                cbExerciseItemsActionPerformed(evt);
             }
         });
 
@@ -246,10 +253,17 @@ public class EnterData extends javax.swing.JFrame {
         });
 
         bAddActivity.setText("Add");
+        bAddActivity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddActivityActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Activity");
 
-        jLabel6.setText("Amount");
+        jLabel6.setText("Duration");
+
+        lEUnit.setText("298 Cal/30 min");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -258,29 +272,34 @@ public class EnterData extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbActivityList, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(10, 10, 10)
+                    .addComponent(jLabel5)
+                    .addComponent(cbExerciseItems, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(tfActivityAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lEUnit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bAddActivity))
-                    .addComponent(jLabel6))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbActivityList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbExerciseItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfActivityAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bAddActivity))
+                    .addComponent(bAddActivity)
+                    .addComponent(lEUnit))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -445,15 +464,16 @@ public class EnterData extends javax.swing.JFrame {
     }//GEN-LAST:event_tfFoodQtyActionPerformed
 
     private void cbFoodItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFoodItemsActionPerformed
-        // TODO add your handling code here:
         if(cbFoodItems.getSelectedItem().toString()!=null){
             lFUnit.setText(Food.getUnit(cbFoodItems.getSelectedItem().toString()));
         }
     }//GEN-LAST:event_cbFoodItemsActionPerformed
 
-    private void cbActivityListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbActivityListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbActivityListActionPerformed
+    private void cbExerciseItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbExerciseItemsActionPerformed
+        if(cbExerciseItems.getSelectedItem().toString()!=null){
+            lEUnit.setText(Exercise.getUnit(cbExerciseItems.getSelectedItem().toString()));
+        }
+    }//GEN-LAST:event_cbExerciseItemsActionPerformed
 
     private void tfActivityAmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfActivityAmtActionPerformed
         // TODO add your handling code here:
@@ -466,6 +486,14 @@ public class EnterData extends javax.swing.JFrame {
     private void tfSteps1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSteps1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfSteps1ActionPerformed
+
+    private void bAddFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddFoodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bAddFoodActionPerformed
+
+    private void bAddActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActivityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bAddActivityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -518,7 +546,7 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JButton bEnter;
     private javax.swing.JButton bLogout;
     private javax.swing.JButton bTrack;
-    private javax.swing.JComboBox<String> cbActivityList;
+    private javax.swing.JComboBox<String> cbExerciseItems;
     private javax.swing.JComboBox<String> cbFoodItems;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -535,6 +563,7 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
     private javax.swing.JLabel lBmi;
+    private javax.swing.JLabel lEUnit;
     private javax.swing.JLabel lFUnit;
     private javax.swing.JLabel lHeight;
     private javax.swing.JLabel lName;

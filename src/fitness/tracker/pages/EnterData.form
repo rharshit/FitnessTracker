@@ -343,6 +343,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddFoodActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -376,17 +379,22 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cbActivityList" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbExerciseItems" min="-2" pref="172" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="tfActivityAmt" min="-2" pref="87" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lEUnit" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="bAddActivity" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -396,15 +404,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cbActivityList" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbExerciseItems" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfActivityAmt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bAddActivity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lEUnit" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -412,18 +421,39 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JComboBox" name="cbActivityList">
+            <Component class="javax.swing.JComboBox" name="cbExerciseItems">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Plank"/>
-                    <StringItem index="1" value="Push-ups"/>
-                    <StringItem index="2" value="Pull-ups"/>
+                  <StringArray count="24">
+                    <StringItem index="0" value="Basketball"/>
+                    <StringItem index="1" value="Bicycling"/>
+                    <StringItem index="2" value="Calistheics"/>
+                    <StringItem index="3" value="Circuit Training"/>
+                    <StringItem index="4" value="Cricket"/>
+                    <StringItem index="5" value="Dancing"/>
+                    <StringItem index="6" value="Football"/>
+                    <StringItem index="7" value="Golf"/>
+                    <StringItem index="8" value="Jogging"/>
+                    <StringItem index="9" value="Martial Arts"/>
+                    <StringItem index="10" value="Pull Ups"/>
+                    <StringItem index="11" value="Pushups"/>
+                    <StringItem index="12" value="Rock Climbing"/>
+                    <StringItem index="13" value="Rowing"/>
+                    <StringItem index="14" value="Running"/>
+                    <StringItem index="15" value="Sit Ups"/>
+                    <StringItem index="16" value="Stretching"/>
+                    <StringItem index="17" value="Swimmig"/>
+                    <StringItem index="18" value="Tennis"/>
+                    <StringItem index="19" value="Volleyball"/>
+                    <StringItem index="20" value="Walking"/>
+                    <StringItem index="21" value="Weight Lifting(general)"/>
+                    <StringItem index="22" value="Weight Lifting(vigorous)"/>
+                    <StringItem index="23" value="Yoga"/>
                   </StringArray>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbActivityListActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbExerciseItemsActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -438,6 +468,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddActivityActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -446,7 +479,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Amount"/>
+                <Property name="text" type="java.lang.String" value="Duration"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lEUnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="298 Cal/30 min"/>
               </Properties>
             </Component>
           </SubComponents>
