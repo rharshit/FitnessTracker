@@ -6,6 +6,7 @@
 package fitness.tracker.util;
 
 import fitness.tracker.util.Connect;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

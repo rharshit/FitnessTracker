@@ -246,18 +246,20 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cbFoodItems" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbFoodItems" min="-2" pref="172" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="tfFoodQty" min="-2" pref="87" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="bAddFood" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lFUnit" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="bAddFood" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -275,6 +277,7 @@
                           <Component id="cbFoodItems" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfFoodQty" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bAddFood" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lFUnit" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -285,10 +288,42 @@
             <Component class="javax.swing.JComboBox" name="cbFoodItems">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Butter"/>
-                    <StringItem index="1" value="Cheese"/>
-                    <StringItem index="2" value="Egg"/>
+                  <StringArray count="35">
+                    <StringItem index="0" value="Almonds"/>
+                    <StringItem index="1" value="Aloo Paratha"/>
+                    <StringItem index="2" value="Apple"/>
+                    <StringItem index="3" value="Brown Rice"/>
+                    <StringItem index="4" value="Chapati"/>
+                    <StringItem index="5" value="Cornflakes"/>
+                    <StringItem index="6" value="Curd"/>
+                    <StringItem index="7" value="Daal"/>
+                    <StringItem index="8" value="Double Toned Milk"/>
+                    <StringItem index="9" value="Egg(Boiled)"/>
+                    <StringItem index="10" value="Green Salad"/>
+                    <StringItem index="11" value="Grilled Sandwich"/>
+                    <StringItem index="12" value="Guava"/>
+                    <StringItem index="13" value="Idli"/>
+                    <StringItem index="14" value="Masala Dosa"/>
+                    <StringItem index="15" value="Muesli"/>
+                    <StringItem index="16" value="Orange"/>
+                    <StringItem index="17" value="Paneer Paratha"/>
+                    <StringItem index="18" value="Paneer Tikka Masala"/>
+                    <StringItem index="19" value="Paneer(Toned Milk)"/>
+                    <StringItem index="20" value="Pastry"/>
+                    <StringItem index="21" value="Plain Rice"/>
+                    <StringItem index="22" value="Plain Toast"/>
+                    <StringItem index="23" value="Poha"/>
+                    <StringItem index="24" value="Pomegranates"/>
+                    <StringItem index="25" value="Protein Shake"/>
+                    <StringItem index="26" value="Raita"/>
+                    <StringItem index="27" value="Roti"/>
+                    <StringItem index="28" value="Samosa"/>
+                    <StringItem index="29" value="Soya Yogurt"/>
+                    <StringItem index="30" value="Upma"/>
+                    <StringItem index="31" value="Uttapam"/>
+                    <StringItem index="32" value="Veg Puff"/>
+                    <StringItem index="33" value="Walnut"/>
+                    <StringItem index="34" value="Watermelon"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -317,6 +352,11 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quantity"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lFUnit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="8 Cal/1 Unit"/>
               </Properties>
             </Component>
           </SubComponents>

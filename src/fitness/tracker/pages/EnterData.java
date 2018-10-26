@@ -10,6 +10,7 @@ import static fitness.tracker.pages.EditDetails.user;
 import fitness.tracker.pages.EnterData;
 import fitness.tracker.pages.TrackData;
 import fitness.tracker.pages.Login;
+import fitness.tracker.util.Food;
 import fitness.tracker.util.User;
 
 /**
@@ -55,6 +56,7 @@ public class EnterData extends javax.swing.JFrame {
         bAddFood = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lFUnit = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         cbActivityList = new javax.swing.JComboBox<>();
         tfActivityAmt = new javax.swing.JTextField();
@@ -171,7 +173,7 @@ public class EnterData extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Food Consumed"));
 
-        cbFoodItems.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Butter", "Cheese", "Egg" }));
+        cbFoodItems.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Almonds", "Aloo Paratha", "Apple", "Brown Rice", "Chapati", "Cornflakes", "Curd", "Daal", "Double Toned Milk", "Egg(Boiled)", "Green Salad", "Grilled Sandwich", "Guava", "Idli", "Masala Dosa", "Muesli", "Orange", "Paneer Paratha", "Paneer Tikka Masala", "Paneer(Toned Milk)", "Pastry", "Plain Rice", "Plain Toast", "Poha", "Pomegranates", "Protein Shake", "Raita", "Roti", "Samosa", "Soya Yogurt", "Upma", "Uttapam", "Veg Puff", "Walnut", "Watermelon" }));
         cbFoodItems.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFoodItemsActionPerformed(evt);
@@ -190,6 +192,8 @@ public class EnterData extends javax.swing.JFrame {
 
         jLabel4.setText("Quantity");
 
+        lFUnit.setText("8 Cal/1 Unit");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -197,15 +201,17 @@ public class EnterData extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbFoodItems, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(10, 10, 10)
+                    .addComponent(jLabel3)
+                    .addComponent(cbFoodItems, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(tfFoodQty, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bAddFood))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lFUnit))
                     .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bAddFood)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -219,7 +225,8 @@ public class EnterData extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbFoodItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfFoodQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bAddFood))
+                    .addComponent(bAddFood)
+                    .addComponent(lFUnit))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -439,6 +446,9 @@ public class EnterData extends javax.swing.JFrame {
 
     private void cbFoodItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFoodItemsActionPerformed
         // TODO add your handling code here:
+        if(cbFoodItems.getSelectedItem().toString()!=null){
+            lFUnit.setText(Food.getUnit(cbFoodItems.getSelectedItem().toString()));
+        }
     }//GEN-LAST:event_cbFoodItemsActionPerformed
 
     private void cbActivityListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbActivityListActionPerformed
@@ -525,6 +535,7 @@ public class EnterData extends javax.swing.JFrame {
     private javax.swing.JPanel jpInfo;
     private javax.swing.JPanel jpNav;
     private javax.swing.JLabel lBmi;
+    private javax.swing.JLabel lFUnit;
     private javax.swing.JLabel lHeight;
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lUname;
