@@ -129,4 +129,85 @@ public class User {
         user.psw = new_psw;
         return user;
     }
+    
+    public static User updateHeight(User user, String height) {
+        //SELECT * FROM fitness.track WHERE track.username='1' and track.date='2018-10-27'
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "SELECT * FROM fitness.track WHERE track.username='"
+                    +user.uname+"' and track.date='"+java.time.LocalDate.now().toString()+"'";
+            System.out.println("Query: "+query);
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.next()){
+                //UPDATE `fitness`.`track` SET `height` = '170' WHERE (`username` = '1') and (`date` = '2018-10-26');
+                //UPDATE `fitness`.`user` SET `height` = '170' WHERE (`username` = '1');
+                String update;
+                update = "UPDATE `fitness`.`track` SET `height` = '"
+                        +height+"' WHERE (`username` = '"+user.uname+"') and (`date` = '"
+                        +java.time.LocalDate.now().toString()+"')";
+                System.out.println("Update: "+update);
+                stmt.execute(update);
+                update = "UPDATE `fitness`.`user` SET `height` = '"
+                        +height+"' WHERE (`username` = '"+user.uname+"')";
+                System.out.println("Update: "+update);
+                stmt.execute(update);
+                user.height = height;
+                return user;
+            } else {
+                insertTrack(user);
+                return updateHeight(user, height);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static User updateWeight(User user, String weight) {
+        //SELECT * FROM fitness.track WHERE track.username='1' and track.date='2018-10-27'
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "SELECT * FROM fitness.track WHERE track.username='"
+                    +user.uname+"' and track.date='"+java.time.LocalDate.now().toString()+"'";
+            System.out.println("Query: "+query);
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.next()){
+                //UPDATE `fitness`.`track` SET `weight` = '70' WHERE (`username` = '1') and (`date` = '2018-10-26');
+                //UPDATE `fitness`.`user` SET `weight` = '70' WHERE (`username` = '1');
+                String update;
+                update = "UPDATE `fitness`.`track` SET `weight` = '"
+                        +weight+"' WHERE (`username` = '"+user.uname+"') and (`date` = '"
+                        +java.time.LocalDate.now().toString()+"')";
+                System.out.println("Update: "+update);
+                stmt.execute(update);
+                update = "UPDATE `fitness`.`user` SET `weight` = '"
+                        +weight+"' WHERE (`username` = '"+user.uname+"')";
+                System.out.println("Update: "+update);
+                stmt.execute(update);
+                user.weight = weight;
+                return user;
+            } else {
+                insertTrack(user);
+                return updateWeight(user, weight);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    static public void insertTrack(User user){
+        //INSERT INTO `fitness`.`track` (`username`, `date`) VALUES ('1', '2018-10-26');
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String insert = "INSERT INTO `fitness`.`track` (`username`, `date`) VALUES ('"+user.uname+"', '"+java.time.LocalDate.now().toString()+"');";
+            System.out.println(insert);
+            stmt.execute(insert);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -15,6 +15,7 @@ import fitness.tracker.util.Food;
 import fitness.tracker.util.User;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -562,10 +563,32 @@ public class EnterData extends javax.swing.JFrame {
 
     private void bUpdHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpdHeightActionPerformed
         // TODO add your handling code here:
+        if(checkNum(tfHeight)){
+            user = User.updateHeight(user, tfHeight.getText());
+            if(user!=null){
+                new EnterData(user).show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "An error occured");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Height feild");
+        }
     }//GEN-LAST:event_bUpdHeightActionPerformed
 
     private void bUpdWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpdWeightActionPerformed
         // TODO add your handling code here:
+        if(checkNum(tfWeight)){
+            user = User.updateWeight(user, tfWeight.getText());
+            if(user!=null){
+                new EnterData(user).show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "An error occured");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Weight feild");
+        }
     }//GEN-LAST:event_bUpdWeightActionPerformed
 
     /**
@@ -671,7 +694,7 @@ public class EnterData extends javax.swing.JFrame {
         addListener(tfWeight);
     }
     
-    private boolean checkInt(JTextField tf) {
+    private boolean checkNum(JTextField tf) {
         tf.setForeground(Color.BLACK);
         try{
             Float.parseFloat(tf.getText());
@@ -686,17 +709,17 @@ public class EnterData extends javax.swing.JFrame {
         tf.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                checkInt(tf);
+                checkNum(tf);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                checkInt(tf);
+                checkNum(tf);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                checkInt(tf);
+                checkNum(tf);
             }
         });
     }
