@@ -131,10 +131,12 @@ public class Login extends javax.swing.JFrame {
     
     private void tfLoginUnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLoginUnameActionPerformed
         // TODO add your handling code here:
+        tfLoginPsw.requestFocus();
     }//GEN-LAST:event_tfLoginUnameActionPerformed
 
     private void tfLoginPswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLoginPswActionPerformed
         // TODO add your handling code here:
+        bLoginActionPerformed(evt);
     }//GEN-LAST:event_tfLoginPswActionPerformed
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
