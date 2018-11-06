@@ -215,8 +215,7 @@ public class User {
     }
     
     public static User updateFood(User user, String f_name, String quantity) {
-        //INSERT INTO `fitness`.`consume` (`f_name`, `username`, `f_date`, `quantity`, `cal_cons`)
-        //VALUES ('Apple', 'rharshit', '2018-10-25', '3', '264');
+        //call addFood('rharshit', 'Apple', 1, 88, '2018-11-06'); 
         String unit = Food.getUnit(f_name);
         String date = java.time.LocalDate.now().toString();
         float cal_per_unit = Float.parseFloat(unit.split("/")[0].split(" ")[0]);
@@ -227,52 +226,17 @@ public class User {
         System.out.println("Cal/Unit: "+cal_per_unit);
         System.out.println("Toal Cal: "+cal);
         try {
-            //SELECT * FROM fitness.consume Where consume.f_name='Apple'
-            //AND consume.username='rharshit' AND f_date='2018-10-25';
             Connection con = Connect.connectDB();
             Statement stmt = (Statement) con.createStatement();
-            String query = "SELECT * FROM fitness.consume Where consume.f_name='"
-                    +f_name+"' AND consume.username='"+user.uname
-                    +"' AND f_date='"+date+"'";
+            String query = "call addFood('"
+                    +user.uname+"', '"+f_name+"', "+quantity+", "
+                    +Float.toString(cal)+", '"+date+"')";
             System.out.println("Query: "+query);
             ResultSet rs = stmt.executeQuery(query);
-            if(rs.next()){
-                //UPDATE `fitness`.`consume` SET `quantity` = '5', `cal_cons` = '440' WHERE (`f_name` = 'Apple') and (`username` = 'rharshit') and (`f_date` = '2018-10-25');
-                float tot_cal, tot_qty;
-                tot_qty = Float.parseFloat(rs.getString("quantity"));
-                tot_qty+=Float.parseFloat(quantity);
-                tot_cal = tot_qty*cal_per_unit/cal_unit;
-                String update;
-                update = "UPDATE `fitness`.`consume` SET `quantity` = '"
-                        +tot_qty+"', `cal_cons` = '"+Float.toString(tot_cal)+"'"
-                        + "WHERE (`f_name` = '"+f_name+"') and (`username` = '"
-                        +user.uname+"') and (`f_date` = '"+date+"')";
-                System.out.println("Update: "+update);
-                stmt.execute(update);
-                return user;
-            } else {
-                insertFood(user, f_name);
-                return updateFood(user, f_name, quantity);
-            }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-    }
-    
-    static public void insertFood(User user, String f_name){
-        //INSERT INTO `fitness`.`consume` (`f_name`, `username`, `f_date`, `quantity`, `cal_cons`) VALUES ('Apple', 'rharshit', '2018-10-27', '0', '0');
-        try {
-            Connection con = Connect.connectDB();
-            Statement stmt = (Statement) con.createStatement();
-            String insert = "INSERT INTO `fitness`.`consume` "
-                    + "(`f_name`, `username`, `f_date`, `quantity`, `cal_cons`) "
-                    + "VALUES ('"+f_name+"', '"+user.uname+"', '"
-                    +java.time.LocalDate.now().toString()+"', '0', '0')";
-            System.out.println(insert);
-            stmt.execute(insert);
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        return user;
     }
 }

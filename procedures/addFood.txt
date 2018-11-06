@@ -1,0 +1,30 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addFood`(IN uname1 varchar(45), IN f_name1 varchar(45), IN quantity1 int, IN cal_cons1 int, IN f_date1 date)
+BEGIN
+	DECLARE cnt int default 0;
+	set cnt = (SELECT count(*)
+    from consume
+    where username = uname1
+    and f_name = f_name1
+    and f_date = f_date1);
+    IF cnt>=1 THEN
+		set quantity1 = (SELECT quantity
+			from consume
+			where username = uname1
+			and f_name = f_name1
+			and f_date = f_date1)
+			+ quantity1;
+        set cal_cons1 = (SELECT cal_cons
+			from consume
+			where username = uname1
+			and f_name = f_name1
+			and f_date = f_date1)
+			+ cal_cons1;
+		UPDATE `fitness`.`consume` SET `quantity` = quantity1, `cal_cons` = cal_cons1
+			WHERE (`f_name` = f_name1) and (`username` = uname1) and (`f_date` = f_date1);
+
+	ELSE
+		INSERT INTO `fitness`.`consume`
+			(`f_name`, `username`, `f_date`, `quantity`, `cal_cons`) 
+			VALUES (f_name1, uname1, f_date1, quantity1, cal_cons1);
+	END IF;
+END
