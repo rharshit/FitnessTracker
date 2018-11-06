@@ -17,12 +17,26 @@ import java.util.logging.Logger;
  * @author rhars
  */
 public class Track {
-    public static ResultSet trackCalCOns(User user){
+    public static ResultSet trackCalCons(User user){
         //call trackCalCons('rharshit', '2018-11-06');
         try {
             Connection con = Connect.connectDB();
             Statement stmt = (Statement) con.createStatement();
             String query = "call trackCalCons('"+user.uname+"', '"+java.time.LocalDate.now().toString()+"');";
+            System.out.println("Query: "+query);
+            return stmt.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public static ResultSet trackCalBurnt(User user){
+        //call trackCalCons('rharshit', '2018-11-06');
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "call trackCalBurnt('"+user.uname+"', '"+java.time.LocalDate.now().toString()+"');";
             System.out.println("Query: "+query);
             return stmt.executeQuery(query);
         } catch (SQLException ex) {

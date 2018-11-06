@@ -57,7 +57,7 @@ public class TrackData extends javax.swing.JFrame {
         lineChart.setTitle("Consumed");
         
         XYChart.Series<String, Number> data = new XYChart.Series<>();
-        ResultSet rs = Track.trackCalCOns(user);
+        ResultSet rs = Track.trackCalCons(user);
         try {
             while(rs.next()){ 
                 String date = rs.getString("c_date");
@@ -87,13 +87,16 @@ public class TrackData extends javax.swing.JFrame {
         lineChart.setTitle("Burnt");
         
         XYChart.Series<String, Number> data = new XYChart.Series<>();
-        data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
-        data.getData().add(new XYChart.Data<String, Number>("Tue", 520));
-        data.getData().add(new XYChart.Data<String, Number>("Wed", 620));
-        data.getData().add(new XYChart.Data<String, Number>("Thu", 360));
-        data.getData().add(new XYChart.Data<String, Number>("Fri", 260));
-        data.getData().add(new XYChart.Data<String, Number>("Sat", 100));
-        data.getData().add(new XYChart.Data<String, Number>("Sun", 50));
+        ResultSet rs = Track.trackCalBurnt(user);
+        try {
+            while(rs.next()){ 
+                String date = rs.getString("c_date");
+                int cal = rs.getInt("cals");
+                data.getData().add(new XYChart.Data<String, Number>(date, cal));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TrackData.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         lineChart.getData().add(data);
         root.getChildren().add(lineChart);
