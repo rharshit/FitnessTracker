@@ -1,0 +1,21 @@
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTotCalCons`(uname VARCHAR(45), dat date) RETURNS int(11)
+BEGIN
+	DECLARE done INT DEFAULT FALSE;
+	DECLARE tot INT;
+    DECLARE cal INT;
+    DECLARE cals CURSOR FOR
+		SELECT cal_cons FROM consume
+        WHERE username = uname
+        AND f_date = dat;
+	  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+    SET tot = 0;
+    OPEN cals;
+    get_cal: LOOP
+		FETCH cals INTO cal;
+        IF done THEN
+			LEAVE get_cal;
+		END IF;
+        SET tot = tot + cal;
+	END LOOP get_cal;
+RETURN tot;
+END

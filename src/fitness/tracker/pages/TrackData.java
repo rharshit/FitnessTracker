@@ -11,8 +11,13 @@ import fitness.tracker.pages.EnterData;
 import static fitness.tracker.pages.EnterData.user;
 import fitness.tracker.pages.TrackData;
 import fitness.tracker.pages.Login;
+import fitness.tracker.util.Track;
 import fitness.tracker.util.User;
 import java.awt.Font;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
@@ -43,7 +48,7 @@ public class TrackData extends javax.swing.JFrame {
         Scene scene = new Scene(root, 500, 300);
         
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Day");
+        xAxis.setLabel("Date");
         
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Calories Consumed");
@@ -52,13 +57,16 @@ public class TrackData extends javax.swing.JFrame {
         lineChart.setTitle("Consumed");
         
         XYChart.Series<String, Number> data = new XYChart.Series<>();
-        data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
-        data.getData().add(new XYChart.Data<String, Number>("Tue", 520));
-        data.getData().add(new XYChart.Data<String, Number>("Wed", 620));
-        data.getData().add(new XYChart.Data<String, Number>("Thu", 360));
-        data.getData().add(new XYChart.Data<String, Number>("Fri", 260));
-        data.getData().add(new XYChart.Data<String, Number>("Sat", 100));
-        data.getData().add(new XYChart.Data<String, Number>("Sun", 50));
+        ResultSet rs = Track.trackCalCOns(user);
+        try {
+            while(rs.next()){ 
+                String date = rs.getString("c_date");
+                int cal = rs.getInt("cals");
+                data.getData().add(new XYChart.Data<String, Number>(date, cal));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TrackData.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         lineChart.getData().add(data);
         root.getChildren().add(lineChart);
@@ -70,7 +78,7 @@ public class TrackData extends javax.swing.JFrame {
         Scene scene = new Scene(root, 500, 300);
         
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Day");
+        xAxis.setLabel("Date");
         
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Calories Burnt");
@@ -97,7 +105,7 @@ public class TrackData extends javax.swing.JFrame {
         Scene scene = new Scene(root, 500, 300);
         
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Day");
+        xAxis.setLabel("Date");
         
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Net Calories");
@@ -124,7 +132,7 @@ public class TrackData extends javax.swing.JFrame {
         Scene scene = new Scene(root, 500, 300);
         
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Day");
+        xAxis.setLabel("Date");
         
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Weight");
