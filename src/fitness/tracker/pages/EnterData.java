@@ -564,6 +564,19 @@ public class EnterData extends javax.swing.JFrame {
 
     private void bAddActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActivityActionPerformed
         // TODO add your handling code here:
+        if(checkNum(tfActivityAmt)){
+            User newUser = User.updateExercise(user, cbExerciseItems.getSelectedItem().toString(), tfActivityAmt.getText());
+            if(newUser!=null){
+                new EnterData(newUser).show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "An error occured");
+                new EnterData(user).show();
+                dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Duration feild");
+        }
     }//GEN-LAST:event_bAddActivityActionPerformed
 
     private void bAddStepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddStepsActionPerformed

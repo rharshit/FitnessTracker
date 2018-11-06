@@ -239,4 +239,29 @@ public class User {
         }
         return user;
     }
+    
+    public static User updateExercise(User user, String e_name, String duration) {
+        String unit = Exercise.getUnit(e_name);
+        String date = java.time.LocalDate.now().toString();
+        float cal_per_unit = Float.parseFloat(unit.split("/")[0].split(" ")[0]);
+        float cal_unit = Float.parseFloat(unit.split("/")[1].split(" ")[0]);
+        float cal = Float.parseFloat(duration)*cal_per_unit/cal_unit;
+        System.out.println("Unit: "+unit);
+        System.out.println("Cal Unit: "+cal_unit);
+        System.out.println("Cal/Unit: "+cal_per_unit);
+        System.out.println("Toal Cal: "+cal);
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "call addActivity('"
+                    +user.uname+"', '"+e_name+"', "+duration+", "
+                    +Float.toString(cal)+", '"+date+"')";
+            System.out.println("Query: "+query);
+            ResultSet rs = stmt.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return user;
+    }
 }

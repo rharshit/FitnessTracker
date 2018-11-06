@@ -1,0 +1,30 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addActivity`(IN uname1 varchar(45), IN e_name1 varchar(45), IN duration1 int, IN cal_burnt1 int, IN e_date1 date)
+BEGIN
+	DECLARE cnt int default 0;
+	set cnt = (SELECT count(*)
+    from burn
+    where username = uname1
+    and e_name = e_name1
+    and e_date = e_date1);
+    IF cnt>=1 THEN
+		set duration1 = (SELECT duration
+			from burn
+			where username = uname1
+			and e_name = e_name1
+			and e_date = e_date1)
+			+ duration1;
+        set cal_burnt1 = (SELECT cal_burnt
+			from burn
+			where username = uname1
+			and e_name = e_name1
+			and e_date = e_date1)
+			+ cal_burnt1;
+		UPDATE `fitness`.`burn` SET `duration` = duration1, `cal_burnt` = cal_burnt1
+			WHERE (`e_name` = e_name1) and (`username` = uname1) and (`e_date` = e_date1);
+
+	ELSE
+		INSERT INTO `fitness`.`burn`
+			(`e_name`, `username`, `e_date`, `duration`, `cal_burnt`) 
+			VALUES (e_name1, uname1, e_date1, duration1, cal_burnt1);
+	END IF;
+END
