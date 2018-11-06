@@ -548,12 +548,14 @@ public class EnterData extends javax.swing.JFrame {
     private void bAddFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddFoodActionPerformed
         // TODO add your handling code here:
         if(checkNum(tfFoodQty)){
-            user = User.updateFood(user, cbFoodItems.getSelectedItem().toString(), tfFoodQty.getText());
-            if(user!=null){
-                new EnterData(user).show();
+            User newUser = User.updateFood(user, cbFoodItems.getSelectedItem().toString(), tfFoodQty.getText());
+            if(newUser!=null){
+                new EnterData(newUser).show();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "An error occured");
+                new EnterData(user).show();
+                dispose();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Quantity feild");
