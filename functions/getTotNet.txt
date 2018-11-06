@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` FUNCTION `getTotCalNet`(uname VARCHAR(45), dat date) RETURNS int(11)
+BEGIN
+	RETURN getTotCalCons(uname, dat) - getTotCalBurnt(uname, dat);
+END

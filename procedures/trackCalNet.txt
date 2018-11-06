@@ -1,0 +1,15 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `trackCalNet`(uname VARCHAR(45), dat DATE)
+BEGIN
+	DECLARE i INT DEFAULT 6;
+    DECLARE cal INT;
+    CREATE TABLE `fitness`.`tmp` (
+		`cals` INT NOT NULL, `c_date` VARCHAR(2) NOT NULL);
+    WHILE i>=0 DO
+		SET cal = getTotCalNet(uname, date_sub(dat, interval i day));
+        INSERT INTO `fitness`.`tmp`
+			(`cals`, `c_date`) VALUES (cal, extract(DAY FROM date_sub(dat, interval i day)));
+        SET i = i-1;
+	END WHILE;
+    SELECT * FROM tmp;
+    DROP TABLE `fitness`.`tmp`;
+END
