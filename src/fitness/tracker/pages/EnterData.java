@@ -519,6 +519,7 @@ public class EnterData extends javax.swing.JFrame {
 
     private void tfFoodQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFoodQtyActionPerformed
         // TODO add your handling code here:
+        bAddFoodActionPerformed(evt);
     }//GEN-LAST:event_tfFoodQtyActionPerformed
 
     private void cbFoodItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFoodItemsActionPerformed
@@ -535,6 +536,7 @@ public class EnterData extends javax.swing.JFrame {
 
     private void tfActivityAmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfActivityAmtActionPerformed
         // TODO add your handling code here:
+        bAddActivityActionPerformed(evt);
     }//GEN-LAST:event_tfActivityAmtActionPerformed
 
     private void tfStepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfStepsActionPerformed
