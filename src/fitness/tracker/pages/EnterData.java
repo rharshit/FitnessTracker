@@ -583,6 +583,19 @@ public class EnterData extends javax.swing.JFrame {
 
     private void bAddStepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddStepsActionPerformed
         // TODO add your handling code here:
+                if(checkNum(tfSteps)){
+            User newUser = User.updateExercise(user, "Steps", tfSteps.getText());
+            if(newUser!=null){
+                new EnterData(newUser).show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "An error occured");
+                new EnterData(user).show();
+                dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Duration feild");
+        }
     }//GEN-LAST:event_bAddStepsActionPerformed
 
     private void tfWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfWeightActionPerformed
