@@ -21,7 +21,7 @@ public class Food {
         //SELECT * FROM fitness.food WHERE food.f_name='Almonds';
         String rtn = "";
         String f_cal = "", f_unit = "";
-                try {
+        try {
             Connection con = Connect.connectDB();
             Statement stmt = (Statement) con.createStatement();
             String query = "SELECT * FROM fitness.food WHERE food.f_name='"+f_name+"'";
@@ -37,5 +37,27 @@ public class Food {
             return null;
         }
         return rtn;
+    }
+
+    public static String mostConsumed(){
+        String s = "";
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "SELECT f_name "
+                    + "FROM fitness.total_consumed "
+                    + "WHERE qty = (SELECT max(qty) FROM fitness.total_consumed);";
+            System.out.println("Query: "+query);
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.next()){
+                s = rs.getString("f_name");
+            } else {
+                s = "Fetching";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return s;
     }
 }

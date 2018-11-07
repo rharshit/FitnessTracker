@@ -69,6 +69,7 @@
                               <Component id="lUname" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lWeight" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lHeight" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lMostConsumed" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -92,6 +93,8 @@
                   <Component id="lWeight" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lHeight" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lMostConsumed" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="bEdit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -172,6 +175,11 @@
         <Component class="javax.swing.JLabel" name="lHeight">
           <Properties>
             <Property name="text" type="java.lang.String" value="Height:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lMostConsumed">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Most Consumed Food Item:"/>
           </Properties>
         </Component>
       </SubComponents>

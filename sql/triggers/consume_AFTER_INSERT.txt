@@ -1,0 +1,6 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `consume_AFTER_INSERT` AFTER INSERT ON `consume` FOR EACH ROW BEGIN
+	DECLARE q INT DEFAULT 0;
+    SET q = (SELECT qty FROM total_consumed WHERE total_consumed.f_name = NEW.f_name);
+    SET q = q + NEW.quantity;
+    UPDATE `fitness`.`total_consumed` SET `qty` = q WHERE (`f_name` = NEW.f_name);
+END

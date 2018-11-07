@@ -11,6 +11,7 @@ import fitness.tracker.pages.EnterData;
 import static fitness.tracker.pages.EnterData.user;
 import fitness.tracker.pages.TrackData;
 import fitness.tracker.pages.Login;
+import fitness.tracker.util.Food;
 import fitness.tracker.util.Track;
 import fitness.tracker.util.User;
 import java.awt.Font;
@@ -242,6 +243,7 @@ public class TrackData extends javax.swing.JFrame {
         lUname = new javax.swing.JLabel();
         lWeight = new javax.swing.JLabel();
         lHeight = new javax.swing.JLabel();
+        lMostConsumed = new javax.swing.JLabel();
         jpInfo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -290,6 +292,8 @@ public class TrackData extends javax.swing.JFrame {
 
         lHeight.setText("Height:");
 
+        lMostConsumed.setText("Most Consumed Food Item:");
+
         javax.swing.GroupLayout jpNavLayout = new javax.swing.GroupLayout(jpNav);
         jpNav.setLayout(jpNavLayout);
         jpNavLayout.setHorizontalGroup(
@@ -308,7 +312,8 @@ public class TrackData extends javax.swing.JFrame {
                             .addComponent(lBmi)
                             .addComponent(lUname)
                             .addComponent(lWeight)
-                            .addComponent(lHeight))
+                            .addComponent(lHeight)
+                            .addComponent(lMostConsumed))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -327,6 +332,8 @@ public class TrackData extends javax.swing.JFrame {
                 .addComponent(lWeight)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lHeight)
+                .addGap(18, 18, 18)
+                .addComponent(lMostConsumed)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bEdit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -444,6 +451,7 @@ public class TrackData extends javax.swing.JFrame {
     private javax.swing.JPanel jpNav;
     private javax.swing.JLabel lBmi;
     private javax.swing.JLabel lHeight;
+    private javax.swing.JLabel lMostConsumed;
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lUname;
     private javax.swing.JLabel lWeight;
@@ -466,6 +474,7 @@ public class TrackData extends javax.swing.JFrame {
         lUname.setText("Username: "+user.uname);
         lHeight.setText("Height: "+user.height);
         lWeight.setText("Weight: "+user.weight);
+        lMostConsumed.setText("Most Consumed Food Item: \n"+Food.mostConsumed());
     }
 
     private void initCustomComponents() {
