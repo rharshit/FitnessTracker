@@ -1,0 +1,29 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `trackBMI`(uname VARCHAR(45), dat DATE)
+BEGIN
+	DECLARE i INT DEFAULT 0;
+    DECLARE cal INT;
+    DECLARE h INT;
+    DECLARE w INT;
+    DECLARE cnt INT;
+    DECLARE curr DATE;
+    CREATE TABLE `fitness`.`tmp` (
+		`height` INT NOT NULL, `weight` INT NOT NULL, `c_date` VARCHAR(2) NOT NULL);
+	SET h = (SELECT height FROM user WHERE user.username = uname);
+    SET w = (SELECT weight FROM user WHERE user.username = uname);
+    WHILE i<7 DO
+		SET curr = date_sub(dat, interval i day);
+		SET cnt = (SELECT count(*) from track where track.username = uname and track.date = curr and height is NOT NULL);
+        IF cnt>0 THEN
+			SET h = (SELECT height from track where track.username = uname and track.date = curr and height is NOT NULL);
+		END IF;
+        SET cnt = (SELECT count(*) from track where track.username = uname and track.date = curr and weight is NOT NULL);
+        IF cnt>0 THEN
+			SET w = (SELECT weight from track where track.username = uname and track.date = curr and weight is NOT NULL);
+		END IF;
+        INSERT INTO `fitness`.`tmp`
+			(`height`, `weight`, `c_date`) VALUES (h, w, extract(DAY FROm curr));
+        SET i = i+1;
+	END WHILE;
+    SELECT * FROM tmp;
+    DROP TABLE `fitness`.`tmp`;
+END

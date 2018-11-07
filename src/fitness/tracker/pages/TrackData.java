@@ -16,6 +16,7 @@ import fitness.tracker.util.User;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -27,6 +28,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 import javax.swing.GroupLayout.Group;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -147,14 +149,25 @@ public class TrackData extends javax.swing.JFrame {
         lineChart.setTitle("BMI");
         
         XYChart.Series<String, Number> data = new XYChart.Series<>();
-        data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
-        data.getData().add(new XYChart.Data<String, Number>("Tue", 520));
-        data.getData().add(new XYChart.Data<String, Number>("Wed", 620));
-        data.getData().add(new XYChart.Data<String, Number>("Thu", 360));
-        data.getData().add(new XYChart.Data<String, Number>("Fri", 260));
-        data.getData().add(new XYChart.Data<String, Number>("Sat", 100));
-        data.getData().add(new XYChart.Data<String, Number>("Sun", 50));
+        ResultSet rs = Track.trackBMI(user);
+        ArrayList<Pair> b = new ArrayList<Pair>();
+        try {
+            while(rs.next()){ 
+                String date = rs.getString("date");
+                float w = rs.getFloat("weight");
+                float h = rs.getFloat("height");
+                float bmi = (float) (w*10000/(Math.pow(h, 2)));
+                b.add(new Pair(date, bmi));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TrackData.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        for(int i = b.size()-1; i>=0; i--){
+            Pair point = b.get(i);
+            data.getData().add(new XYChart.Data<String, Number>
+                (point.getKey().toString(), Float.parseFloat(point.getValue().toString())));
+        }
         lineChart.getData().add(data);
         root.getChildren().add(lineChart);
         
