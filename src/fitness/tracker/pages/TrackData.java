@@ -133,7 +133,7 @@ public class TrackData extends javax.swing.JFrame {
         
         return scene;
     }
-    private static Scene createSceneWeight() {
+    private static Scene createSceneBMI() {
         HBox root = new HBox();
         Scene scene = new Scene(root, 500, 300);
         
@@ -141,10 +141,10 @@ public class TrackData extends javax.swing.JFrame {
         xAxis.setLabel("Date");
         
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Weight");
+        yAxis.setLabel("BMI");
         
         LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
-        lineChart.setTitle("Weight");
+        lineChart.setTitle("BMI");
         
         XYChart.Series<String, Number> data = new XYChart.Series<>();
         data.getData().add(new XYChart.Data<String, Number>("Mon", 420));
@@ -181,7 +181,7 @@ public class TrackData extends javax.swing.JFrame {
                 initFXCalCons(jPanel1);
                 initFXCalBurnt(jPanel3);
                 initFXCalBal(jPanel4);
-                initFXWeight(jPanel5);
+                initFXBMI(jPanel5);
             }
        });
     }
@@ -204,9 +204,9 @@ public class TrackData extends javax.swing.JFrame {
         fxPanel.setScene(scene);
     }
     
-    private static void initFXWeight(JFXPanel fxPanel) {
+    private static void initFXBMI(JFXPanel fxPanel) {
         // This method is invoked on the JavaFX thread
-        Scene scene = createSceneWeight();
+        Scene scene = createSceneBMI();
         fxPanel.setScene(scene);
     }
     /**
