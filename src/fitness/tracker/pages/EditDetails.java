@@ -339,9 +339,9 @@ public class EditDetails extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "New password cannot be same as current password");
                 } else {
                     if(User.checkOldPassword(user.uname, tfNpass.getText())){
-                        user = User.updatePassword(user, tfNpass.getText());
-                        if(user!=null){
-                            new EditDetails(user).show();
+                        User newUser = User.updatePassword(user, tfNpass.getText());
+                        if(newUser!=null){
+                            new EditDetails(newUser).show();
                             dispose();
                         } else {
                             JOptionPane.showMessageDialog(null, "An error occured");

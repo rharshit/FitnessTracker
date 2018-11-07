@@ -605,9 +605,9 @@ public class EnterData extends javax.swing.JFrame {
     private void bUpdHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpdHeightActionPerformed
         // TODO add your handling code here:
         if(checkNum(tfHeight)){
-            user = User.updateHeight(user, tfHeight.getText());
-            if(user!=null){
-                new EnterData(user).show();
+            User newUser = User.updateHeight(user, tfHeight.getText());
+            if(newUser!=null){
+                new EnterData(newUser).show();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "An error occured");
@@ -620,9 +620,9 @@ public class EnterData extends javax.swing.JFrame {
     private void bUpdWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUpdWeightActionPerformed
         // TODO add your handling code here:
         if(checkNum(tfWeight)){
-            user = User.updateWeight(user, tfWeight.getText());
-            if(user!=null){
-                new EnterData(user).show();
+            User newUser = User.updateWeight(user, tfWeight.getText());
+            if(newUser!=null){
+                new EnterData(newUser).show();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "An error occured");
