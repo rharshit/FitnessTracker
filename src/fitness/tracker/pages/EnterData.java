@@ -738,7 +738,10 @@ public class EnterData extends javax.swing.JFrame {
     private boolean checkNum(JTextField tf) {
         tf.setForeground(Color.BLACK);
         try{
-            Float.parseFloat(tf.getText());
+            float f = Float.parseFloat(tf.getText());
+            if(f>1000000){
+                throw new Exception();
+            }
         } catch (Exception e){
             tf.setForeground(Color.RED);
             return false;
