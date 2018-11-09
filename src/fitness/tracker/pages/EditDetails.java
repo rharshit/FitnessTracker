@@ -333,28 +333,32 @@ public class EditDetails extends javax.swing.JFrame {
 
     private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
         // TODO add your handling code here:
-        if(tfNpass.getText().equals(tfCpass.getText())){
-            if(tfOpass.getText().equals(user.psw)){
-                if(tfNpass.getText().equals(user.psw)){
-                    JOptionPane.showMessageDialog(null, "New password cannot be same as current password");
-                } else {
-                    if(User.checkOldPassword(user.uname, tfNpass.getText())){
-                        User newUser = User.updatePassword(user, tfNpass.getText());
-                        if(newUser!=null){
-                            new EditDetails(newUser).show();
-                            dispose();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "An error occured");
-                        }
+        if(tfNpass.getText().length()<3){
+            JOptionPane.showMessageDialog(null, "The passwords must be at least 3 charecters long");
+        } else {
+            if(tfNpass.getText().equals(tfCpass.getText())){
+                if(tfOpass.getText().equals(user.psw)){
+                    if(tfNpass.getText().equals(user.psw)){
+                        JOptionPane.showMessageDialog(null, "New password cannot be same as current password");
                     } else {
-                        JOptionPane.showMessageDialog(null, "New password cannot be same as one of the old passwords");
+                        if(User.checkOldPassword(user.uname, tfNpass.getText())){
+                            User newUser = User.updatePassword(user, tfNpass.getText());
+                            if(newUser!=null){
+                                new EditDetails(newUser).show();
+                                dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "An error occured");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "New password cannot be same as one of the old passwords");
+                        }
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect current password");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Incorrect current password");
+                JOptionPane.showMessageDialog(null, "The passwords entered do not match");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "The passwords entered do not match");
         }
     }//GEN-LAST:event_bSaveActionPerformed
 

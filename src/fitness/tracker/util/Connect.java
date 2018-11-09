@@ -22,7 +22,7 @@ public class Connect {
     
     public static Connection con = null;
     
-    static Connection connectDB(){
+    public static Connection connectDB(){
         con = null;
         try{
             con = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);

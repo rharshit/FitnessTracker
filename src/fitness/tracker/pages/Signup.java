@@ -6,7 +6,18 @@
 package fitness.tracker.pages;
 
 import fitness.tracker.pages.Details;
+import fitness.tracker.util.Connect;
+import fitness.tracker.util.User;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 /**
  *
  * @author student
@@ -21,8 +32,97 @@ public class Signup extends javax.swing.JFrame {
         uname = name;
         initComponents();
         tfSignupUname.setText(uname);
+        addActionListeners();
     }
 
+    private void addActionListeners() {
+        tfSignupUname.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                checkUname();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                checkUname();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                checkUname();
+            }
+        });
+        
+        tfSignupPsw.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                checkPsw();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                checkPsw();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                checkPsw();
+            }
+        });
+                
+        tfSignupPsw2.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                checkPsw();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                checkPsw();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                checkPsw();
+            }
+        });
+    }
+    
+    private boolean checkUname(){
+        tfSignupUname.setForeground(Color.black);
+        String uname = tfSignupUname.getText();
+        try {
+            Connection con = Connect.connectDB();
+            Statement stmt = (Statement) con.createStatement();
+            String query = "SELECT * FROM user where user.username='"+uname+"'";
+            System.out.println("Query: "+query);
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.next()){
+                tfSignupUname.setForeground(Color.red);
+                return false;
+            } else {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    private void checkPsw(){
+        tfSignupPsw.setForeground(Color.black);
+        tfSignupPsw2.setForeground(Color.black);
+        String psw = tfSignupPsw.getText();
+        String psw2 = tfSignupPsw2.getText();
+        if(psw.length()<3){
+            tfSignupPsw.setForeground(Color.red);
+            tfSignupPsw2.setForeground(Color.red);
+        } else {
+            if(!psw.equals(psw2)){
+                tfSignupPsw2.setForeground(Color.red);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,11 +231,24 @@ public class Signup extends javax.swing.JFrame {
 
     private void bSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSignupActionPerformed
         // TODO add your handling code here:
-        if(tfSignupPsw.getText().equals(tfSignupPsw2.getText())){
-            new Details(tfSignupUname.getText(), tfSignupPsw.getText()).show();
-            dispose();
+        if(checkUname()){
+            if(tfSignupUname.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "The username cannot be null");
+            } else {
+                if(tfSignupPsw.getText().length()<3){
+                    JOptionPane.showMessageDialog(null, "The passwords must be at least 3 charecters long");
+                }else {
+
+                    if(tfSignupPsw.getText().equals(tfSignupPsw2.getText())){
+                        new Details(tfSignupUname.getText(), tfSignupPsw.getText()).show();
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "The passwords entered do not match");
+                    }
+                }
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "The passwords entered do not match");
+            JOptionPane.showMessageDialog(null, "Username already taken");
         }
     }//GEN-LAST:event_bSignupActionPerformed
 
